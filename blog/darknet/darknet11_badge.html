@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lange="en">
+    <head>
+        <title>Darknet 11 Badge DEFCON 30 2022</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../../site.css">
+    </head>
+    <body class="css_center">
+        <hgroup>
+            <div class="css_center_text">
+                <h1>
+                    DCDarknet 11 Badge Instructions for DEFCON 30
+                </h1>
+                <small>
+                    Posted on April 08, 2022
+                </small>
+            </div>
+            <div>
+                <h2>
+                    Introduction
+                </h2>
+            </div>
+            <div>
+                This year's Darknet (11) is a Printed Circuit Cardboard (PCCB), which will let us focus more on teaching basic electronics rather than soldering. In past years, most people followed the instructions on how to assemble the badge, but spent very little time learning how or why the badge works.
+                <br>
+                <br>
+                By using a paper badge and supplying you with the parts, we're giving you the freedom and the know-how to design your own circuit, your own custom badge.
+                <br><br>
+                <i>
+                    Please note this is not an exhaustive electronics course, this is enough information to get you started and playing around, so some things have been greatly simplified and or glossed over.
+                </i>
+            </div>
+            <div>
+                <h2>
+                    Badge Levels
+                </h2>
+                <ul>
+                    <li>
+                        <b>Badge Level 1</b>
+                        <br>
+                        This is a light up badge. You will pick your own resistors, LEDs, and battery pack for a badge that lights up.
+                    </li>
+                    <li>
+                        <b>Badge Level 2</b>
+                        <br>
+                        This badge is designed to blink. You will pick your own resostors, capacitors, LEDs, transistors, and battery pack.
+                    </li>
+                    <li>
+                        <b>Badge Level 3</b>
+                        <br>
+                        This is a 3D badge that is designed to blink. This badge is designed to be 3D, so you will take copper wire to create a circuit sculpture. You will pick your resistors, capacitors, LEDs, and a 555 Timer Integrated Circuit.
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h2>
+                    <a id ="definitions">
+                        Definitions
+                    </a>
+                </h2>
+                <ul>
+                    <li>
+                        <b>Electricity</b>
+                        <br>
+                        A form of energy resulting from the existence of charged particles (protons / electrons)
+                    </li>
+                    <li>
+                        <b>Electric Current</b>
+                        <br>
+                        A stream of charged particles (electrons) moving through a conductor or space. Current is measured in amperes (amps). There are two types of current: Direct Current (DC) and Alternating Current (AC). We will only focusing on DC for these badges.
+                        <br>
+                        Think of current as the amount of water that flows through a hose.
+                    </li>
+                    <li>
+                        <b>Voltage</b>
+                        <br>
+                        An electromotive force measured in volts (V)
+                        <br>
+                        Think of voltage as the water pressure in a hose. The more pressure the more volage.
+                    </li>
+                    <li>
+                        <b>Parallel</b>
+                        <br>
+                        When the whole voltage flows through each electrical component at the same time. The voltage in a parallel circuit should remain the same across all parallel components while the current will drop between components.
+                        <br>
+                        Think of it as transporting thousands of gallons of water from point A to point B. In a parallel circuit we would load up many vehicles the same way and have them take different streets to get to point B. The amount of water (current) will be less than the whole as it is split between vehicles, but the vehicles (voltage) will be able to travel faster to point B as they are not weighed down by too much water.
+                    </li>
+                    <li>
+                        <b>Series</b>
+                        <br>
+                        When the whole current flows through each electrical component one after another. The current in a series circuit should remain the same across all components while the voltage will drop between components.
+                        <br>
+                        This of it as transporting thousands of gallons of water from point A to point B. In a series circuit, we would load up one giant vehicle with all of the water (current). This giant vehicle (voltage) will be much slower as it is weighed down by a lot of water (current). But the amount of water (current) will not change inside that giant vehicle (voltage).
+                    </li>
+                    <li>
+                        <b>Power Supply</b>
+                        <br>
+                        An electrical device that supplies electric power. Supplying voltage and amperes to a circuit.
+                        <br>
+                        Think of a power supply as the spigot where the hose is attached to and water is supplied from.
+                        <br>
+                        We use power supplies to supply the power to drive electrical components, like LEDs.
+                        <br>
+                        The electricity supplied by power supplies will flow from positive to negative. In this case it will be from the red wire (usually positive) to the black wire (usually negative).
+                    </li>
+                    <li>
+                        <b>Battery</b> (BT#)
+                        <br>
+                        A container consisting of one or more cells, in which chemical energy is converted into electricity.
+                        <br>
+                        Batteries are measured in voltage and amp hours.
+                        <br>
+                        Think of a battery as a container for storing the water for furture use.
+                        <br>
+                        We use batteries to supply the power to drive electrical components like LEDs.
+                        <br>
+                        <img src="pictures/battery_symbol.png" style="max-width:100%;height:auto;" title="A screenshot of the electronics symbol for a battery" alt="A screenshot of the electronics symbol for a battery">
+                    </li>
+                    <li>
+                        <b>Reistor</b> (R#)
+                        <br>
+                        A resistor is a passive electrical component that creates resistance in the flow of electric current.
+                        <br>
+                        Reistors are messured in ohms Ω.
+                        <br>
+                        Think of a resistor as what would limit the amount of water coming out of the hose. The force of the water would be considered the voltage, the amount of water would be the amps.
+                        <br>
+                        We use resistors to limit the amount of current to prevent damaging components like LEDs, transistors, and Integrated Circuits (IC).
+                        <br>
+                        <img src="pictures/resistor_symbol.png" style="max-width:100%;height:auto;" title="A screenshot of the electronics symbol for a resistor" alt="A screenshot of the electronics symbol for a resistor">
+                    </li>
+                    <li>
+                        <b>Polarized Components</b>
+                        <br>
+                        A polorized component is a component that can only be connected in a circuit one way. A non-polarized component can be connected in a circuit in any way.
+                        <br>
+                        Most resistors is considered a non-polarized component that can be placed in the circuit in any direction.
+                        <br>
+                        Most LEDs are considered polarized, which means there is usually a positive and negative side to the LED. You must pay attention to which side of an LED is the positive and the negative when connecting it to a circuit.
+                        <br>
+                        Think of non-polaried component as a hose. Water can flow through a hose in either direction, so it doesn't matter which direction the hose is connected to a water supply.
+                        <br>
+                        Think of a polarized component as the spigot that water comes from. The water only comes out of the spigot in one direction. While you could try to force water back into a spigot, there is a good chance that you will break the spigot.
+                    </li>
+                    <li>
+                        <b>LED (Light Emitting Diode)</b> (D#)
+                        <br>
+                        A Light Emitting Diode (LED) is a passive semiconductor that emits light when a current flows through it. A LED is a polarized part, which means that we have to pay attention to the direction that the current flows through the LED. Current will flow from the Anode to the Cathode. The anode is generally considered positive and the cathode is generally considered negative. Most LEDs, not all, the flat side of the LED is the cathode, just think that the flat side forms a negative (-). Most LEDs, not all, the longer lead is the anode, just think that we have an extra lead so we can bend it around to make a + sign.
+                        <br>
+                        An LED is the blinky blinky part of a circuit.
+                        <br>
+                        <img src="pictures/led_symbol.png" style="max-width:100%;height:auto;" title="A screenshot of the electronics symbol for a LED" alt="A screenshot of the electronics symbol for a LED">
+                    </li>
+                    <li>
+                        <b>Forward Voltage</b>
+                        <br>
+                        The forward voltage is the amount of voltage that an LED consumes when current passes through the LED. The forward voltage is also the minimum voltage required for the LED to illuminate.
+                        <br>
+                    </li>
+                    <li>
+                        <b>Capacitor</b> (C#)
+                        <br>
+                        A capacitor is a passive electrical component that stores electrical energy in an electric field. Some capacitors are polarized and some are not. The ones for the Darknet badge are all polarized, so we must pay attention to which side is positive and negative on the capacitor. The negative side is labeled on the capacitor itself.
+                        <br>
+                        When the capacitor is charging, the current flows from positive to negative, and when the capacitor is discharging the current flows from negative to positive. Basically while a capacitor is charging power is moving in one direction, but when it is charged the power moves in the opposite direction.
+                        <br>
+                        Think of it like a deer scare, as the deer scare fills, the water is moving into the deer scare, but once it is full it tips over and dumps all of the water out.
+                        <br>
+                        Capacitors are measured in farads (F).
+                        <br>
+                        <img src="pictures/capacitor_symbol.png" style="max-width:100%;height:auto;" title="A screenshot of the electronics symbol for a capacitor" alt="A screenshot of the electronics symbol for a capacitor">
+                    </li>
+                    <li>
+                        <b>Transistor</b> (Q#)
+                        <br>
+                        A transistor is an active semiconductor that can amplify or switch electrical signals and power. For the Darknet badge, we will be using transistors as switches.
+                        <br>
+                        A transistor has 3 leads, an emitter, base, and a collector. Depending on the power supplied to the base, will determine if the switch is on or off between the collector and the emitter.
+                        <br>
+                        The Darknet badge will be using transistors as switches. So think of the transistors as automatic light switches.
+                        <br>
+                        <img src="pictures/transistor_symbol.png" style="max-width:100%;height:auto;" title="A screenshot of the electronics symbol for a transitor" alt="A screenshot of the electronics symbol for a transitor">
+                    </li>
+                    <li>
+                        <b>555 Timer IC</b> (U#)
+                        <br>
+                        A 555 is an Integrated Circuit (IC) that is used as a timer, delay, pulse generation or oscillator.
+                        <br>
+                        Think of this as a really fancy sun dial.
+                        <br>
+                        <img src="pictures/555_symbol.png" style="max-width:100%;height:auto;" title="A screenshot of the electronics symbol for a 555 timer IC" alt="A screenshot of the electronics symbol for a 555 timer IC">
+                    </li>
+                    <li>
+                        <b>Bistable Multivibrator</b>
+                        <br>
+                        A multivibrator is an electronic device that produces a non-sinusoidal waveform. A sinusoidal (Sine) waveform is a wave that has a gradual increase and decrease. A non-sinusoidal waveform is a wave that does not have have gradual increases or decreases, like a square wave. A picture is worth a thousand words:
+                        <br>
+                        <img src="pictures/sinusoidal_vs_square.jpg" style="max-width:100%;height:auto;" title="A screenshot contrasting a sine wave and a square wave" alt="A screenshot contrasting a sine wave and a square wave">
+                        <br>
+                        A bistable multivibrator just means that the wave has 2 stable states (T1, T2). In our case, the Badge Level 2 will have 2 LEDs. In a bistable multivibrator, that means that when one LED is on, the other LED is off. And when the second LED turns on, the first LED turns off. Otherwise known as a flip-flop.
+                        <br>
+                        <img src="pictures/bistable_multivibrator.png" style="max-width:100%;height:auto;" title="A screenshot of a square wave with 2 peaks and valleys with T1 and T2 in the valleys" alt="A screenshot of a square wave with 2 peaks and valleys with T1 and T2 in the valleys">
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h2>
+                    Parts
+                </h2>
+                <ul>
+                    <li>
+                        <b>Batteries</b>
+                        <br>
+                        AAA, each battery is 1.5 V (volts) and ~ 1 Ah (Amp Hours)
+                    </li>
+                    <li>
+                        <b>AAA battery pack</b>
+                        <br>
+                        Holds 3 AAA batteries in serial which gives us 4.5 V and 3 Ah for our circuit
+                    </li>
+                    <li>
+                        <b>Resistors</b> (R#)
+                        <br>
+                        Ranging from 12 Ω to 9.1K Ω.
+                    </li>
+                    <li>
+                        <b>LEDs</b> (D#)
+                        <br>
+                        Green, orange, red, and yellow LEDs to choose from
+                    </li>
+                    <li>
+                        <b>Capacitors</b> (C#)
+                        <br>
+                        100 μF (micro Farad), 470 μF, 1 F
+                    </li>
+                    <li>
+                        <b>Transistors</b> (Q#)
+                        <br>
+                        2N2222A
+                        <img src="pictures/2N2222A.jpeg" style="max-width:100%;height:auto;" title="A picture of a 2N2222A transitor component with the pins labeled from left to right with 1, 2, and 3. Then a screenshot of the electronics symbol of a transitor, labeling the Base with 2, Collector with 3, and the Emitter with 1 to help identify the pins to the parts of a transistor" alt="A picture of a 2N2222A transitor component with the pins labeled from left to right with 1, 2, and 3. Then a screenshot of the electronics symbol of a transitor, labeling the Base with 2, Collector with 3, and the Emitter with 1 to help identify the pins to the parts of a transistor">
+                    </li>
+                    <li>
+                        <b>Integrated Circuit</b> (U#)
+                        <br>
+                        555 Timer
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h2>
+                    BOM (Bill of Materials)
+                </h2>
+                <ul>
+                    <li>
+                        <b>Copper Tape</b>
+                        <br>
+                        <i>Badge Leves 1 and 2</i>
+                        <br>
+                        <a href="https://www.amazon.com/gp/product/B07FQK55VS">
+                            https://www.amazon.com/gp/product/B07FQK55VS
+                        </a>
+                    </li>
+                    <li>
+                        <b>Scotch Tape</b>
+                        <br>
+                        <i>Badge Levels 1 and 2</i>
+                        <br>
+                        <a href="https://www.amazon.com/OWLKELA-Refillable-Dispensers-Transparent-Dispenser/dp/B0997R1K7H">
+                            https://www.amazon.com/OWLKELA-Refillable-Dispensers-Transparent-Dispenser/dp/B0997R1K7H
+                        </a>
+                    </li>
+                    <li>
+                        <b>Hole Punch</b>
+                        <br>
+                        <i>Badge Levels 1 and 2</i>
+                        <br>
+                        <a href="https://www.amazon.com/gp/product/B09K42NH72">
+                            https://www.amazon.com/gp/product/B09K42NH72
+                        </a>
+                    </li>
+                    <li>
+                        <b>Lanyards</b>
+                        <br>
+                        <i>Badge Levels 1 and 2</i>
+                        <br>
+                        <a href="https://www.amazon.com/gp/product/B09ZRPD3JK">
+                            https://www.amazon.com/gp/product/B09ZRPD3JK
+                        </a>
+                    </li>
+                    <li>
+                        <b>PCCB</b> (Printed Circuit CardBoard)
+                        <br>
+                        <i>Badge Levels 1 and 2</i>
+                        <br>
+                        <a href="https://github.com/darknet-ng/Darknet11-Badge">
+                            https://github.com/darknet-ng/Darknet11-Badge
+                        </a>
+                    </li>
+                    <li>
+                        <b>Blank Cards</b>
+                        <br>
+                        <i>Badge Levels 1 and 2</i>
+                        <br>
+                        <a href="https://www.amazon.com/gp/product/B0949P46JT">
+                            https://www.amazon.com/gp/product/B0949P46JT
+                        </a>
+                    </li>
+                    <li>
+                        <b>Full Sheets of Paper</b>
+                        <br>
+                        <i>Badges Levels 1 and 2</i>
+                        <br>
+                        <a href="https://www.amazon.com/dp/B006P1EQXA">
+                            https://www.amazon.com/dp/B006P1EQXA
+                        </a>
+                    </li>
+                    <li>
+                        <b>Hole Protectors</b>
+                        <br>
+                        <i>Badge Levels 1 and 2</i>
+                        <br>
+                        <a href="https://www.amazon.com/dp/B07V9FL8V4">
+                            https://www.amazon.com/dp/B07V9FL8V4
+                        </a>
+                    </li>
+                    <li>
+                        <b>Soldering Spoons</b> (Any plastic spoon should work)
+                        <br>
+                        <i>Badge Levels 1 and 2</i>
+                        <br>
+                        <a href="https://www.amazon.com/dp/B002YH1A0Q">
+                            https://www.amazon.com/dp/B002YH1A0Q
+                        </a>
+                    </li>
+                    <li>
+                        <b>Doulbe Sided Tape</b>
+                        <br>
+                        <i>Badge Levels 1 and 2</i>
+                        <br>
+                        <a href="https://amazon.com/gp/product/B009NP1OBC">
+                            https://amazon.com/gp/product/B009NP1OBC
+                        </a>
+                    </li>
+                    <li>
+                        <b>Battery Pack</b>
+                        <br>
+                        <i>Badge Levels 1 and 2</i>
+                        <br>
+                        <a href="https://www.amazon.com/gp/product/B081C7FYY4">
+                            https://www.amazon.com/gp/product/B081C7FYY4
+                        </a>
+                    </li>
+                    <li>
+                        <b>LEDs</b> (D#)
+                        <br>
+                        <i>Badge Levels 1 and 2</i>
+                        <br>
+                        Amazon Option (Pay attention to the forward voltage for each color, it should be 2.1V or lower)
+                        <br>
+                        <a href="https://www.amazon.com/eBoot-Pieces-Emitting-Diodes-Assorted/dp/B06XPV4CSH">
+                            https://www.amazon.com/eBoot-Pieces-Emitting-Diodes-Assorted/dp/B06XPV4CSH
+                        </a>
+                        <br>
+                        Actual LEDs used at DEFCON 32
+                        <br>
+                        <ul>
+                            <li>
+                                Green LED (Lite-On LTL-4233)
+                            </li>
+                            <li>
+                                Orange LED (Lumex SSL-LX5093AD)
+                            </li>
+                            <li>
+                                Red LED (Lite-On LTL-4213)
+                            </li>
+                            <li>
+                                Yellow LED (Lite-On LTL-4253)
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <b>Resistors</b> (R#)
+                        <br>
+                        <i>Badge Levels 1 and 2</i>
+                        <br>
+                        <a href="https://www.amazon.com/dp/B08FD1XVL6">
+                            https://www.amazon.com/dp/B08FD1XVL6
+                        </a>
+                        <br>
+                        Actual resistors used at DEFCON 32
+                        <br>
+                        <ul>
+                            <li>
+                                12 Ω (CFM12JT12R0)
+                            </li>
+                            <li>
+                                15 Ω  (CFM12JT15R0)
+                            </li>
+                            <li>
+                                110 Ω (CFM12JT110R)
+                            </li>
+                            <li>
+                                2K Ω (CFM12JT2K00)
+                            </li>
+                            <li>
+                                3.3K Ω (CFM12JT3K30)
+                            </li>
+                            <li>
+                                5.6K Ω (CFM12JT5K60)
+                            </li>
+                            <li>
+                                9.1K Ω (CFM12JT9K10)
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <b>Transistors</b> (Q#)
+                        <br>
+                        <i>Badge Levels 2</i>
+                        <br>
+                        2N2222A
+                        <br>
+                        <a href="https://www.amazon.com/CHANZON-BJT-Transistors-2N2222A-TO-92-100/dp/B083TNXLHD">
+                            https://www.amazon.com/CHANZON-BJT-Transistors-2N2222A-TO-92-100/dp/B083TNXLHD
+                        </a>
+                    </li>
+                    <li>
+                        <b>Capacitors</b> (C#)
+                        <br>
+                        <i>Badge Levels 2</i>
+                        <br>
+                        Amazon Option (Contains more capacitors values than used at DEFCON 32)
+                        <br>
+                        <a href="https://www.amazon.com/gp/product/B01MSQOX0Q">
+                            https://www.amazon.com/gp/product/B01MSQOX0Q
+                        </a>
+                        <br>
+                        Actual capacitors used at DEFCON 32
+                        <br>
+                        <ul>
+                            <li>
+                                100 μF (ESK107M010AC3AA)
+                            </li>
+                            <li>
+                                470 μF (ESK477M6R3AE3AA)
+                            </li>
+                            <li>
+                                1 F (ESK108M6R3AG3AA)
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <b>555 Timer IC</b> (U#)
+                        <br>
+                        <i>Badge Level 3</i>
+                        <br>
+                        <a href="https://www.amazon.com/Texas-Instruments-NE555P-Single-Precision/dp/B00K243MIQ">
+                            https://www.amazon.com/Texas-Instruments-NE555P-Single-Precision/dp/B00K243MIQ
+                        </a>
+                    </li>
+                    <li>
+                        <b>20 AWG Copper Wire</b>
+                        <br>
+                        <i>Badge Level 3</i>
+                        <br>
+                        <a href="https://www.remingtonindustries.com/uninsulated-wire/bare-copper-wire/bare-copper-wire-buss-wire-20-awg-natural-7-spool-sizes/">
+                            https://www.remingtonindustries.com/uninsulated-wire/bare-copper-wire/bare-copper-wire-buss-wire-20-awg-natural-7-spool-sizes/
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h2>
+                    Formulas
+                </h2>
+                <ul>
+                    <li>
+                        <b>Ohm's Law</b>
+                        <br>
+                        Ohm's Law is the formula used to calculate the relationship between voltage (V), current (I), and resistance (R) in an electric circuit. Where V is measured in volts, I is measured in amps, and R is measured in ohms Ω.
+                        <br>
+                        <i>
+                            V = IR
+                        </i>
+                    </li>
+                    <li>
+                        <b>RC Time Constant</b>
+                        <br>
+                        RC Time Constant is the formula we will use to calculate the frequency (f) of the LED flash (blinking) using a capacitor (C) and resistor (R). Where C is measured in farads, and R is measured in ohms Ω.
+                        <br>
+                        <i>f = 1/(τ RC)</i>
+                        <br>
+                        τ (Tau) in the formula above is the mathmatical constant of 2π (pi) or 6.28...
+                        <br>
+                        <small>
+                            For more reading about the awesomeness of tau, please visit <a href="https://tauday.com/tau-manifesto">
+                                https://tauday.com/tau-manifesto
+                            </a> or <a href="https://www.youtube.com/watch?v=FtxmFlMLYRI">
+                                https://www.youtube.com/watch?v=FtxmFlMLYRI
+                            </a>
+                        </small>
+                    </li>
+                    <li>
+                        <b>555 IC Formula</b>
+                        <br>
+                        We will use a square wave duty cycle formula to calculate the LED flash rate. We will need to know the values of two resistors (R1, R2) and one capacitor (C1).
+                        <br>
+                        When calculating a square wave duty cycle, we will have to calculate how long the LED is on for (Time High) and how long the LED is off for (Time Low).
+                        <br>
+                        <i>
+                            Thigh = 0.7 * (R1 + R2) * C1
+                            <br>
+                            Tlow = 0.7 * R2 * C1
+                        </i>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h2>
+                    Badge Level 1
+                </h2>
+                Badge level 1 consists of a power supply (batteries and battery pack) (BT1), resistors (R#), and LEDs (D#).
+                <br>
+                LEDs have a maximum current that can go through them, if we exceed that current, then a LED will pop like a balloon with too much air. We must limit the amount of current that an LED receives. To limit the current, we use resistors. The LEDs that we are using have a rating of ~0.02 amps.
+                <br>
+                We can use Ohm's Law to calculate what the resistance needs to be for the LEDs. We know that the power being supplied will be 4.5 V (3 AAA batteries in series (1.5 * 3)), and we know that the current should be ~0.02 amps.
+                <br>
+                There is one more critical piece that we need to learn about LEDs: LEDs have something called forward voltage. LEDs need to have current to turn on, but they also consume voltage as it passes through them. In our case, all LEDs have a forward voltage of 2.1 V, which is also the minimum voltage that is required to turn on the LED.
+                <br>
+                So if we just had a single LED in this circuit, the math is easy.
+                <br>
+                <p style="margin-left: 3%">
+                    <i>
+                        V = IR
+                        <br>
+                        4.5 - 2.1 = 0.02 * R
+                        <br>
+                        2.4 = 0.02 * R
+                        <br>
+                        2.4 / 0.02 = R
+                        <br>
+                        120 = R
+                        <br>
+                    </i>
+                </p>
+                So in this example, we would need 120 Ω of resistance for that LED. So we would put ~120 Ω resistor in the circuit between the power supply and the LED.
+                <br><br>
+                <a target="_blank" href="pictures/badge1_part1.png">
+                    <img src="pictures/badge1_part1.png" class="css_thumbnail_400" title="A screenshot of a circuit diagram that has the positive of a 4.5V battery (BT1) connecting in serial to a 120 Ω resistor (R1) that connects to the anode of an LED (D1) whose cathode then connects back to the negative of the 4.5V battery (BT1)." alt="A screenshot of a circuit diagram that has the positive of a 4.5V battery (BT1) connecting in serial to a 120 Ω resistor (R1) that connects to the anode of an LED (D1) whose cathode then connects back to the negative of the 4.5V battery (BT1).">
+                </a>
+                <br><br>
+                But wait, our circuit is a little more complex than that. We have 3 LEDs in total. Two of the LEDs are wired in series (D2, D3) and 2 LEDs are wired in parallel (D1, D2). One of the parallel lines only has 1 LED (D1).
+                <br>
+                Since we know that LEDs in parallel (D1, D2) will receive the same voltage, than we know the single LED (D1) will use the formula that we used above.
+                <br>
+                <p style="margin-left: 3%">
+                    <i>
+                        V = IR
+                        <br>
+                        4.5 - 2.1 = 0.02 * R
+                        <br>
+                        2.4 = 0.02 * R
+                        <br>
+                        2.4 / 0.02 = R
+                        <br>
+                        120 = R
+                        <br>
+                    </i>
+                </p>
+                So the single LED (D1) will still use the 120 Ω resistor (R1).
+                <br>
+                But the other line contains 2 LEDs wired in series (D2, D3). Remember the definition of a series circuit, all parts receive the same current, but the voltage will drop. So 2 LEDs in series (D2, D3) will still need ~0.02 amps, but will consume twice the amount of voltage. So our formula for the 2 LEDs in series (D2, D3) will look like this:
+                <br>
+                <p style="margin-left: 3%">
+                    <i>
+                        V = IR
+                        <br>
+                        4.5 - (2 * 2.1) = 0.02 * R
+                        <br>
+                        4.5 - 4.2 = 0.02 * R
+                        <br>
+                        0.3 = 0.02 * R
+                        <br>
+                        0.3 / 0.02 = R
+                        <br>
+                        15 = R
+                        <br>
+                    </i>
+                </p>
+                So for our 2 LEDs wired in series (D2, D3) we will need to have ~15 Ω resistor (R2).
+                <br>
+                To sum everything up, for our level 1 badge, we will need to have a power supply, 3 LEDs, and at least 2 resistors. The single LED (D1) will need to have a ~120 Ω resistor (R1), and the 2 LEDs (D2, D3) will need to have a ~15 Ω resistor (R2).
+                <br><br>
+                <a target="_blank" href="pictures/badge1_full.png">
+                    <img src="pictures/badge1_full.png" class="css_thumbnail_400" title="A screenshot of a circuit diagram that has the positive of a 4.5V battery (BT1) connecting in serial to a 120 Ω resistor (R1) that connects to the anode of an LED (D1) whose cathode then connects back to the negative of the 4.5V battery (BT1). The postive of the 4.5V battery (BT1) also has a parallel connection to a 15 Ω resistor (R2) that connects in serial to the anode of an LED (D2) whose cathode connects to the anode of another LED (D3) whose cathode connects back to the negative of the 4.5V battery (BT1)." alt="A screenshot of a circuit diagram that has the positive of a 4.5V battery (BT1) connecting in serial to a 120 Ω resistor (R1) that connects to the anode of an LED (D1) whose cathode then connects back to the negative of the 4.5V battery (BT1). The postive of the 4.5V battery (BT1) also has a parallel connection to a 15 Ω resistor (R2) that connects in serial to the anode of an LED (D2) whose cathode connects to the anode of another LED (D3) whose cathode connects back to the negative of the 4.5V battery (BT1).">
+                </a>
+                <br><br>
+            </div>
+        </hgroup>
+        <hgroup>
+            <div>
+                <h2>
+                    Badge Level 2
+                </h2>
+                Badge level 2 consists of a power supply (batteries and battery pack) (BT1), resistors (R#), capacitors (C#), transistors (Q#A), and LEDs (D#) to make a blinking badge.
+                <br>
+                Oooooo
+                <br>
+                The transistor will act as a switch between its collector and emitter depending on the voltage of the base. The goal will be to supply voltage to the base. When the voltage of the base hits ~0.7V the switch will close and power will flow between the emitter and the collector.
+                <br>
+                When the voltage is below ~0.7V the switch is open which prevents power from flowing:
+                <br><br>
+                <img src="pictures/open_switch.png" style="max-width:100%;height:auto;" title="A screenshot of the electronics symbol for an open switch" alt="A screenshot of the electronics symbol for an open switch">
+                <br><br>
+                When the voltage is above ~0.7V the switch is closed, which allows power to flow:
+                <br><br>
+                <img src="pictures/closed_switch.png" style="max-width:100%;height:auto;" title="A screenshot of the electronics symbol for a closed switch" alt="A screenshot of the electronics symbol for a closed switch">
+                <br><br>
+                Now that we have a base understanding of transistors, lets start to design our circuit.
+                <br>
+                We know that for an LED to work, it has to have power flow the anode to the cathode. So in our circuit design, we will need to have power (red) (BT1) flow into the anode of the LED (D1), the connect the cathode of the LED (D1) to the collector of the transistor (Q1A), and then have the emitter of the transistor (Q1A) connect back to the negative (blck) (BT1) of the power supply.
+                <br><br>
+                <a target="_blank" href="pictures/badge2_part1.png">
+                    <img src="pictures/badge2_part1.png" class="css_thumbnail_400" title="A screenshot of a circuit diagram that has the postive of a 4.5V battery (BT1) connecting in serial to the anode of a LED (D1) whose cathode connects to the collector of a transistor (Q1A) whose emitter connects back to the negative of the 4.5V battery (BT1)." alt="A screenshot of a circuit diagram that has the postive of a 4.5V battery (BT1) connecting in serial to the anode of a LED (D1) whose cathode connects to the collector of a transistor (Q1A) whose emitter connects back to the negative of the 4.5V battery (BT1).">
+                </a>
+                <br><br>
+                Hmmm, but now we need to connect something to the base of the transistor (Q1A) that will supply ~0.7V sometimes, but not all of the time. Out of the components that we have, do we have something that will first charge itself, and then discharge itself? Why yes, yes we do. We have capacitors. Remember, a capacitor will allow power to flow from positive to negative while it charges, and when it is fully charged it will then discharge itself in the opposite direction. So lets add a capacitor (C2) to our circuit:
+                <br><br>
+                <a target="_blank" href="pictures/badge2_part2.png">
+                    <img src="pictures/badge2_part2.png" class="css_thumbnail_400" title="A screenshot of a circuit diagram that has the postive of a 4.5V battery (BT1) connecting in serial to the anode of a LED (D1) whose cathode connects to the collector of a transistor (Q1A) whose emitter connects back to the negative of the 4.5V battery (BT1). The base of the transitor (Q1A) connects to the negative of a capacitor (C2)." alt="A screenshot of a circuit diagram that has the postive of a 4.5V battery (BT1) connecting in serial to the anode of a LED (D1) whose cathode connects to the collector of a transistor (Q1A) whose emitter connects back to the negative of the 4.5V battery (BT1). The base of the transitor (Q1A) connects to the negative of a capacitor (C2).">
+                </a>
+                <br><br>
+                Now we haver a new problem, where do we connect the positive side of the capacitor (C2) to? We need to connect it to some place that it can receive a charge so that it can discharge into the base of our transistor (Q1A). What if we double our circuit and add another LED (D2), transistor (Q2A), and capacitor (C1)? By doing this, we can create what is called a bistable multivibrator circuit. As one capacitor is charging the other capacitor is discharging. This will cause us to have one LED on, and one LED off, and then the circuit will flip, and the LED that was off will now be on, and the LED that was on will now be off.
+                <br><br>
+                <a target="_blank" href="pictures/badge2_part3.png">
+                    <img src="pictures/badge2_part3.png" class="css_thumbnail_400" title="A screenshot of a circuit diagram that has the positive of a 4.5V battery (BT1) that connects in parallel to the negative of a capacitor (C1), the base of a transitor (Q2A), the anode of a LED (D1), the anode of a LED (D2), the negative of capacitor (C2), and the base of transitor (Q1A). The positive of capacitor (C1) and the cathode of LED (D1) connects to the collector of (Q1A). The positive of capacitor (C2) and the cathode of LED (D2) connects to the collector of (Q2A). The emitter of both transistors (Q1A, Q2A) connect to the negative of the 4.5V battery (BT1)." alt="A screenshot of a circuit diagram that has the positive of a 4.5V battery (BT1) that connects in parallel to the negative of a capacitor (C1), the base of a transitor (Q2A), the anode of a LED (D1), the anode of a LED (D2), the negative of capacitor (C2), and the base of transitor (Q1A). The positive of capacitor (C1) and the cathode of LED (D1) connects to the collector of (Q1A). The positive of capacitor (C2) and the cathode of LED (D2) connects to the collector of (Q2A). The emitter of both transistors (Q1A, Q2A) connect to the negative of the 4.5V battery (BT1).">
+                </a>
+                <br><br>
+                Looking at this circuit, we can see that we have the negatives of the capacitors (C1), C2) attached to the bases of the transistors (Q1A, Q2A) and that we have the positive of the capacitors (C1, C2) attached to the collectors of the opposite transistors (Q1A, Q2A). So when LED (D1) is on, it will be charging the capacitor (C1). When capacitor (C1) is full, it will discharge ~0.7V into the base of the transistor (Q2A) causing the switch to close between the emitter and the collector of transistor (Q2A). This will then turn on LED (D2) which will light up and start to charge the capacitor (C2). When capacitor (C2) is charged, then the cirucit will flip back to LED (D1) lighting up, and capacitor (C1) charging while capacitor (C2) discharges, and LED (D2) is off.
+                <br>
+                There is one problem with our circuit though, we need to add in resistors to protect the components by limiting the amount of current each component receives.
+                <br>
+                We have two LEDs (D1, D2) in parallel, so we can use Ohm's Law to calculate the resistance that we need to protect the LEDs. Refer to Badge Level 1 for how to use Ohm's Law.
+                <br>
+                But we also need to add resistors to the capacitors (C1, C2). This is where we can use the RC Time Constant formula defined in the formulas section.
+                <br>
+                As an example, let's use 707 μF capacitors and 1357 Ω resistors. To calculate the blinking frequency we would:
+                <br>
+                <p style="margin-left: 3%">
+                    <i>
+                        f = 1/(τRC)
+                        <br>
+                        f = 1 / (6.28 * R * C)
+                        <br>
+                        f = 1 / (6.28 * 1357 * 0.000707)
+                        <br>
+                        f = 1 / (8521.96 * 0.00707)
+                        <br>
+                        f = 1 / 6.02502572
+                        <br>
+                        f = 0.16597439521 Hz
+                        <br>
+                    </i>
+                </p>
+                So in this case, the LEDS (D1, D2) would blink at a rate of ~0.166 times per second, or once every 6 seconds.
+                <br>
+                This means that we will be adding 2 resistors (R2, R3) to protect each of the LEDs that are wired in parallel, and adding 2 resistors (R1, R4) for the capacitors to determine the blinking frequency.
+                <br>
+                Our final circuit will look something like this:
+                <br><br>
+                <a target="_blank" href="pictures/badge2_full.png">
+                    <img src="pictures/badge2_full.png" class="css_thumbnail_400" title="A screenshot of a circuit diagram that has the positive of a 4.5V battery (BT1) that connects in parallel to a 1357 Ω resistor (R1) that connects to the negative of a capacitor (C1), the base of a transitor (Q2A). A 1357 Ω resistor (R2) to the anode of a LED (D1). A 1357 Ω resistor to the anode of a LED (D2). A 1357 Ω resistor to the negative of capacitor (C2), and the base of transitor (Q1A). The positive of capacitor (C1) and the cathode of LED (D1) connects to the collector of (Q1A). The positive of capacitor (C2) and the cathode of LED (D2) connects to the collector of (Q2A). The emitter of both transistors (Q1A, Q2A) connect to the negative of the 4.5V battery (BT1)." alt="A screenshot of a circuit diagram that has the positive of a 4.5V battery (BT1) that connects in parallel to a 1357 Ω resistor (R1) that connects to the negative of a capacitor (C1), the base of a transitor (Q2A). A 1357 Ω resistor (R2) to the anode of a LED (D1). A 1357 Ω resistor to the anode of a LED (D2). A 1357 Ω resistor to the negative of capacitor (C2), and the base of transitor (Q1A). The positive of capacitor (C1) and the cathode of LED (D1) connects to the collector of (Q1A). The positive of capacitor (C2) and the cathode of LED (D2) connects to the collector of (Q2A). The emitter of both transistors (Q1A, Q2A) connect to the negative of the 4.5V battery (BT1).">
+                </a>
+                <br><br>
+            </div>
+        </hgroup>
+        <hgroup>
+            <div>
+                <h2>
+                    Badge Level 3
+                </h2>
+                Badge level 3 consists of a power supply (batteries and a battery pack) (BT1), resistors (R#), capacitor (C1), 555 Timer IC (U1), and a LED (D1).
+                <br>
+                Instead of transistors like we used in badge level 2 we will be using the 555 Timer IC (U1) in what is called an astable mode. Astable means that the 555 Timer IC (U1) will oscillate or fluctuate between off and on. This oscillation will be what causes the LED to blink.
+                <br>
+                The oscillation that we will be using is called a square wave:
+                <br>
+                <img src="pictures/square_wave.png" style="max-width:100%;height:auto;" title="A screenshot of a square wave" alt="A screenshot of a square wave">
+                <br>
+                When working with square waves, we need to look at a couple of time measurements. The first is how long is the square wave at its peak, and the second is how long is teh square wave at its valley.
+                <br>
+                The square wave peak will determine how long the LED is on for, and the square wave valley will determine how long the LED is off for. Basically it will tell us what the blinking rate of the LED is.
+                <br>
+                We will start off with an example using the 555 Timer IC (U1) formula that we defined in the formula's section.
+                <br>
+                As an example let's use a 8412 ohm resistor (R1), a 369 ohm resistor (R2), and a 707 μF capacitor (C1). To calculate the square wave and therefore the blink rate, we will start with the Time High:
+                <br>
+                <i>
+                    Thigh = 0.7 * (R1 + R2) * C1
+                    <br>
+                    Thigh = 0.7 * (8412 + 369) * 0.000707
+                    <br>
+                    Thigh = 0.7 * 8781 * 0.000707
+                    <br>
+                    Thigh = 6146.7 * 0.000707
+                    <br>
+                    Thigh = 4.3457169
+                    <br><br>
+                </i>
+                Then to calculate the square wave Time Low we would:
+                <br>
+                <i>
+                    Tlow = 0.7 * R2 * C1
+                    <br>
+                    Tlow = 0.7 * 369 * 0.000707
+                    <br>
+                    Tlow = 258.3 * 0.000707
+                    <br>
+                    Tlow = 0.1826181
+                    <br><br>
+                </i>
+                So in this example the LED (D1) will turn on for ~ 4 seconds, and then it will turn off for ~0.2 seconds. Basically the LED (D1) will stay on for a long time and then it will blink off quickly and turn back on.
+                <br><br>
+                Now that we know how to calculate what the blink rate is using a square wave, we can start to design our circuit using the 555 Timer IC (U1). But first we need to learn a little about the 555 Timer IC (U1).
+                <br>
+                The 555 Timer IC (U1) has a total of 8 pins:
+                <br>
+                <ol>
+                    <li>
+                        Ground (GND)
+                        <br>
+                        The ground pin (1) is used as ground for power to flow towards. As we apply voltage it will flow towards the ground pin.
+                    </li>
+                    <li>
+                        Trigger (TR)
+                        <br>
+                        The trigger pin (2) is used to determine when the output pin needs to be turned on. This is triggered (hehehe) by reaching a threshold of less than 1/3 of the supplied voltage.
+                    </li>
+                    <li>
+                        Output (Q)
+                        <br>
+                        The output pin (3) is where the power goes if the trigger pin is activated. So the output pin is either low, which means that it isn't supplying voltage (or very low voltage), or it is high, which means that it is outputting close to the voltage supplied.
+                    </li>
+                    <li>
+                        Reset (R)
+                        <br>
+                        The reset pin (4) is like the old reset button on your Nintendo (yes I am that old). When pressed it will reset the state of the IC until the trigger is triggered. To activate the reset pin, we attach it to the ground.
+                    </li>
+                    <li>
+                        Control (CV)
+                        <br>
+                        The control pin (5) is used to try and level out fluctuations in the voltage supplied. Usually this is just connected to the ground or the negative on the power supply.
+                    </li>
+                    <li>
+                        Threshold (THR)
+                        <br>
+                        The threshold pin (6) is used to determine when the output pin needs to be turned off. This is triggered by reaching a threshold (hehehe) of more than 2/3 of the supplied voltage.
+                    </li>
+                    <li>
+                        Discharge (DIS)
+                        <br>
+                        The discharge pin (7) will act as a ground or negative to discharge whatever is in the IC while it is on.
+                    </li>
+                    <li>
+                        Vcc (VCC)
+                        <br>
+                        The Vcc pin (8) is connected to the positive end of the power supply. The power supply needs to supply a minimum of 4.5 volts.
+                    </li>
+                </ol>
+                So now that we know a little bit about how the 555 Timer IC (U1) works, we can really start to design our circuit.
+                <br>
+                We know that we need to have power (red) go to Vcc (Pin 8), but we also want power (BT1) to go to Reset (Pin 4) as well. The reason that we are supplying power to Reset is that we don't want Reset to go to the ground and reset our IC (U1).
+                <br><br>
+                <a target="_blank" href="pictures/badge3_part1.png">
+                    <img src="pictures/badge3_part1.png" class="css_thumbnail_400" title="A screenshot of a circuit diagram that has the positive of a 4.5V battery (BT1) that connects in parallel to a 555 timer IC (U1) on pin 8 (VCC) and pin 4 (R)." alt="A screenshot of a circuit diagram that has the positive of a 4.5V battery (BT1) that connects in parallel to a 555 timer IC (U1) on pin 8 (VCC) and pin 4 (R).">
+                </a>
+                <br><br>
+                We also know that we need to have Ground (Pin 1) connect to negative (black) (BT1).
+                <br><br>
+                <a target="_blank" href="pictures/badge3_part2.png">
+                    <img src="pictures/badge3_part2.png" class="css_thumbnail_400" title="A screenshot of a circuit diagram that has the positive of a 4.5V battery (BT1) that connects in parallel to a 555 timer IC (U1) on pin 8 (VCC) and pin 4 (R). The 555 timer IC (U1) pin 1 (GND) connects to negative of the 4.5V battery (BT1)." alt="A screenshot of a circuit diagram that has the positive of a 4.5V battery (BT1) that connects in parallel to a 555 timer IC (U1) on pin 8 (VCC) and pin 4 (R). The 555 timer IC (U1) pin 1 (GND) connects to negative of the 4.5V battery (BT1).">
+                </a>
+                <br><br>
+                We know that Output is where the power will output itself, so that is where we need to connect the anode of the LED (D1). But remember, a LED needs a resistor inline so that it doesn't pop. So please use Ohm's Law to determine the resistor (R3) value to place before the anode. We will also need to connect the cathode of the LED (D1) to the negative (black) (BT1).
+                <br><br>
+                <a target="_blank" href="pictures/badge3_part3.png">
+                    <img src="pictures/badge3_part3.png" class="css_thumbnail_400" title="A screenshot of a circuit diagram that has the positive of a 4.5V battery (BT1) that connects in parallel to a 555 timer IC (U1) on pin 8 (VCC) and pin 4 (R). The 555 timer IC (U1) pin 3 (Q) connects to a resistor (R3) which connects to the annode of a LED (D1) whose cathode connects to the 555 timer IC (U1) pin 1 (GND) which connects to negative of the 4.5V battery (BT1)." alt="A screenshot of a circuit diagram that has the positive of a 4.5V battery (BT1) that connects in parallel to a 555 timer IC (U1) on pin 8 (VCC) and pin 4 (R). The 555 timer IC (U1) pin 3 (Q) connects to a resistor (R3) which connects to the annode of a LED (D1) whose cathode connects to the 555 timer IC (U1) pin 1 (GND) which connects to negative of the 4.5V battery (BT1).">
+                </a>
+                <br><br>
+                This is where the circuit gets a little bit tricky, as we need to connect the Discharge (Pin 7), the Threshold (Pin 6), and the Trigger (Pin 2). We will also need to add in a couple of resistors (R1, R2) and a capacitor (C1).
+                <br>
+                We know that when the IC (U1) is off, meaning that the Threshold (Pin 6) has more than 2/3 voltage, that the Discharge (Pin 7) is on. We will use the Discharge (Pin 7) to charge the capacitor (C1).
+                <br>
+                So to begin with, we need to connect the Discharge (Pin 7) to a resistor (R1). We also need to make sure that we have a complete circuit so we will attach the resistor (R1) to power (red).
+                <br><br>
+                <a target="_blank" href="pictures/badge3_part4.png">
+                    <img src="pictures/badge3_part4.png" class="css_thumbnail_400" title="A screenshot of a circuit diagram that has the positive of a 4.5V battery (BT1) that connects in parallel to a 555 timer IC (U1) on pin 8 (VCC), pin 4 (R), and a resistor (R1) that connects to the 555 timer IC (U1) pin 7 (DIS). The 555 timer IC (U1) pin 3 (Q) connects to a resistor (R3) which connects to the annode of a LED (D1) whose cathode connects to the 555 timer IC (U1) pin 1 (GND) which connects to negative of the 4.5V battery (BT1)." alt="A screenshot of a circuit diagram that has the positive of a 4.5V battery (BT1) that connects in parallel to a 555 timer IC (U1) on pin 8 (VCC), pin 4 (R), and a resistor (R1) that connects to the 555 timer IC (U1) pin 7 (DIS). The 555 timer IC (U1) pin 3 (Q) connects to a resistor (R3) which connects to the annode of a LED (D1) whose cathode connects to the 555 timer IC (U1) pin 1 (GND) which connects to negative of the 4.5V battery (BT1).">
+                </a>
+                <br><br>
+                Since the Discharge (Pin 7) will be used to charge the capacitor (C1), we need to add a resistor (R2) between Discharge (Pin 7) and the capacitor (C1). This resistor (R2) will slow the charge of the capacitor (C1) and therefore determine the vallue (low) of the square wave (how long the LED is off for).
+                <br><br>
+                <a target="_blank" href="pictures/badge3_part5.png">
+                    <img src="pictures/badge3_part5.png" class="css_thumbnail_400" title="A screenshot of a circuit diagram that has the positive of a 4.5V battery (BT1) that connects in parallel to a 555 timer IC (U1) on pin 8 (VCC), pin 4 (R), and a resistor (R1) that connects to the 555 timer IC (U1) pin 7 (DIS) and a resistor (R2) which connects to the positive of a capacitor (C1). The 555 timer IC (U1) pin 3 (Q) connects to a resistor (R3) which connects to the annode of a LED (D1) whose cathode connects to the 555 timer IC (U1) pin 1 (GND) and the negative of a capacitor (C1) which connects to negative of the 4.5V battery (BT1)." alt="A screenshot of a circuit diagram that has the positive of a 4.5V battery (BT1) that connects in parallel to a 555 timer IC (U1) on pin 8 (VCC), pin 4 (R), and a resistor (R1) that connects to the 555 timer IC (U1) pin 7 (DIS) and a resistor (R2) which connects to the positive of a capacitor (C1). The 555 timer IC (U1) pin 3 (Q) connects to a resistor (R3) which connects to the annode of a LED (D1) whose cathode connects to the 555 timer IC (U1) pin 1 (GND) and the negative of a capacitor (C1) which connects to negative of the 4.5V battery (BT1).">
+                </a>
+                <br><br>
+                Lets go a little more in depth into this. So when we turn on the power supply (BT1), the capacitor (C1) will be discharged, meaning it is like a dead battery. Also since we just applied power, we know that the Trigger (Pin 2) will be at less than 1/3 supplied voltage, so the IC (U1) will turn on and the LED (D1) will turn on. The Discharge (Pin 7) will also turn on, and begin to charge the capacitor (C1) through the resistors (R1, R2). Once the capacitor (C1) goes over the 2/3 supplied voltage required for the Threshold (Pin 6) then the IC (U1) will turn off, turning off the LED (D1) and Discharge (Pin 7) of the IC (U1). The IC (U1) will stay off until the capacitor (C1) is disharged. Once the capacitor (C1) goes below the 1/3 supplied voltage for the Trigger (Pin 2) then the IC (U1) will turn on, which will turn on the LED (D1) and the Discharge (Pin 7). This process will continue to repeate itself turning the LED (D1) on and off based on the values of the capacitor (C1) and the resistors (R1, R2).
+                <br>
+                So now, we just need to connect the Trigger (Pin 2) and the Threshold (Pin 6) to the capacitor (C1) and our circuit should be complete.
+                <br><br>
+                <a target="_blank" href="pictures/badge3_full.png">
+                    <img src="pictures/badge3_full.png" class="css_thumbnail_400" title="A screenshot of a circuit diagram that has the positive of a 4.5V battery (BT1) that connects in parallel to a 555 timer IC (U1) on pin 8 (VCC), pin 4 (R), and a resistor (R1) that connects to the 555 timer IC (U1) pin 7 (DIS) and a resistor (R2) which connects to the 555 timer IC (U1) pin 6 (THR) which connects to both the 555 timer IC (U1) pin 2 (TR) and the positive of a capacitor (C1). The 555 timer IC (U1) pin 3 (Q) connects to a resistor (R3) which connects to the annode of a LED (D1) whose cathode connects to the 555 timer IC (U1) pin 1 (GND) and the negative of a capacitor (C1) which connects to negative of the 4.5V battery (BT1)." alt="A screenshot of a circuit diagram that has the positive of a 4.5V battery (BT1) that connects in parallel to a 555 timer IC (U1) on pin 8 (VCC), pin 4 (R), and a resistor (R1) that connects to the 555 timer IC (U1) pin 7 (DIS) and a resistor (R2) which connects to the 555 timer IC (U1) pin 6 (THR) which connects to both the 555 timer IC (U1) pin 2 (TR) and the positive of a capacitor (C1). The 555 timer IC (U1) pin 3 (Q) connects to a resistor (R3) which connects to the annode of a LED (D1) whose cathode connects to the 555 timer IC (U1) pin 1 (GND) and the negative of a capacitor (C1) which connects to negative of the 4.5V battery (BT1).">
+                </a>
+                <br><br>
+                Since we have such a complicated circuit, lets recap how it works:
+                <br>
+                When the Trigger (Pin 2) is less than 1/3 supplied voltage, then the IC (U1) will pass power through the Output (Pin 3) which will power the LED (D1) turning the LED (D1) on. It will also pass power through the Discharge (Pin 7).
+                <br>
+                The Discharge (Pin 7) is connected to the capacitor (C1) through a series of resistors (R1, R2), so when the IC (U1) is on, it will start to charge the capacitor (C1). Once the capacitor (C1) reaches 2/3 of supplied voltage, then it will activate the Threshold (Pin 6). When Threshold (Pin 6) is activated, then the IC (U1) will turn off, and the LED (D1) will turn off. While the IC (U1) is off, the Discharge (Pin 7) will also be off.
+                <br>
+                When the capacitor (C1) drops below 1/3 supplied voltage, then the Trigger (Pin 2) will activate and turn the IC (U1) back on.
+                <br>
+                This process will repeat itself for as long as there is power supplied to the circuit, causing the LED (D1) to blink according to the values calculated for the square wave.
+                <br><br>
+                Congratulations, you, in theory have a working Darknet 11 level 3 badge.
+            </div>
+        </hgroup>
+        <hgroup>
+            <div>
+                <h2>
+                    Darknet 11 Black Badge
+                </h2>
+                If you made it this far, and you completed all 3 levels, then please find Gulo so that he may give you the Darknet 11 black badge.
+                <br>
+                <i>While supplies last</i>
+                <br><br>
+            </div>
+        </hgroup>
+    </body>
+</html>

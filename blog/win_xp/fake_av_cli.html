@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lange="en">
+    <head>
+        <title>Fake Antivirus CLI Removal</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../../site.css">
+    </head>
+    <body class="css_center">
+        <hgroup>
+            <div class="css_center_text">
+                <h1>
+                    Fake Antivirus CLI Removal
+                </h1>
+                <small>
+                    Posted on June 16, 2011
+                </small>
+                <br><br>
+            </div>
+            <div>
+                So I received an e-mail sking if I would write up how to remove one of these fake AV's by only using the COmmand Line Interface (CLI).
+                <br><br>
+                Something I should have done on the first post was to post the MD5 of the virus that I am playing with. So this virus is d3805e63ea463b74cbc22c47fadbfec0 which makes this a Rena.j
+                <br><br>
+                <ol type="A">
+                    <li>
+                        Once I log onto the computer the virus starts up. The first thing that I attempted to do was go to <b>Start, Run</b>, and run <b>cmd.exe</b> But I quickly found out that this virus adds itself to every EXE. So every EXE that is ran opens the virus first.
+                    </li>
+                    <li>
+                        The good thing about these types of viruses is they only block EXE's, so we are able to run COM's instead. So rather than running <b>cmd.exe</b> we would run <b>command.com</b> So once again go to <b>Start, Run</b>, and run <b>command.com</b>
+                        <br>
+                        Which will open up a 16-bit CLI.
+                    </li>
+                    <li>
+                        Next we will use some of the tools from the PSTools Suite. (If you don't have these installed on the computer, you can always run them remotely, or use the task manager to do this first process). The first command that we will use is <b>pslist</b>. This will list out all of the running processes on the computer. We will use this to identify the virus name and or PID (Process Identifier)
+                        <br><br>
+                        <a target="_blank" href="pictures/ryg.jpg">
+                            <img src="pictures/ryg.jpg" class="css_thumbnail_400" title="A screen shot of a CLI window with a list of processes running on a Windows computer with a process named RYG highlighted" alt="A screen shot of a CLI window with a list of processes running on a Windows computer with a process named RYG highlighted">
+                        </a>
+                        <br><br>
+                    </li>
+                    <li>
+                        Now that we have identified the process, we need to kill that process. To kill that process we can either use the name or the PID. The PID is the second column, so in this example it is <b>176</b>. So we need to run <b>pskill ryg.exe</b> to kill the process associated with the virus.
+                    </li>
+                    <li>
+                        Now that we have killed the virus we need to fix the registry, and since I said this would be all done through the CLI, this becomes a little more <u>fun</u>.
+                        <br>
+                        We now need to verify that the EXE key is correct in the registry. To do this we run the command <b>reg query HKEY_CLASSES_ROOT\exefile\shell\open\command</b>
+                        <br><br>
+                        <a target="_blank" href="pictures/regquery1.jpg">
+                            <img src="pictures/regquery1.jpg" class="css_thumbnail_400" title="A screenshot of a CLI window with the following: C:\DOCUME~1\ADMINI~1>reg query HKEY_CLASSES_ROOT\exefile\shell\open\command ! REG.EXE VERSION 3.0 HKEY_CLASSES_ROOT\exefile\shell\open\command <NO NAME> REG_SZ 'D:\RYG.EXE' -a '%a' %* Isolated Command REG_SZ '%1' %*" alt="A screenshot of a CLI window with the following: C:\DOCUME~1\ADMINI~1>reg query HKEY_CLASSES_ROOT\exefile\shell\open\command ! REG.EXE VERSION 3.0 HKEY_CLASSES_ROOT\exefile\shell\open\command <NO NAME> REG_SZ 'D:\RYG.EXE' -a '%a' %* Isolated Command REG_SZ '%1' %*">
+                        </a>
+                        <br><br>
+                    </li>
+                    <li>
+                        Notice how the <b><No Name></b> starts out with <b>"D:\RYG.EXE"</b>. This means that every EXE that is executed will run the virus first. So now we need to update the <b><No Name></b> (Default) with the correct value, which is <b>“%1” %*</b>. The fun part of this is escaping out all of the fun quotes in the value. So the command that needs to be run is <b>reg add HKCR\exefile\shell\open\command /ve /d “\”%1\” %*\”</b>
+                            <br>
+                            Pretty much this command addes a registry key overwriting the current one. The <b>/ve</b> means that it is the default value and the /d is the data that needs to be entered.
+                            <br>
+                            Now we need to search the registry for any of the <b>ryg.exe</b>. I had originally planned doing this just by commands but it appears that Windows XP has removed the CLI switches for <b>REG, FIND,</b> and <b>FINDSTR</b> which caused me to abandon the commands and the batches files and use some VBScript.
+                    </li>
+                    <li>
+                        So on the command line type in <b>edit C:\RegSearch.vbs</b> This will open a command line text editor that we will use to create our VBS file.
+                    </li>
+                    <li>
+                        Inside of the editor type in the following:
+                        <br><br>
+                        <i>
+                            Set objShell = WScript.CreateObject(“WScript.Shell”)
+                            <br>
+                            strSearchString = “ryg.exe”
+                            <br>
+                            Dim arrRegLines()
+                            <br>
+                            Dim arrRegHive(4)
+                            <br>
+                            arrRegHive(0) = “HKCR”
+                            <br>
+                            arrRegHive(1) = “HKCU”
+                            <br>
+                            arrRegHive(2) = “HKLM”
+                            <br>
+                            arrRegHive(3) = “HKU”
+                            <br>
+                            arrRegHive(4) = “HKCC”
+                            <br>
+                            intArrayKey = 0
+                            <br>
+                            For Each lpRegHive in arrRegHive
+                            <br>
+                            WScript.Echo “Processing ” & lpRegHive & ” now.”
+                            <br>
+                            Set objExport = objShell.Exec(“reg query ” & lpRegHive & ” /s”)
+                            <br>
+                            Do While Not objExport.StdOut.AtEndOfStream
+                            <br>
+                            Redim Preserve arrRegLines(intArrayKey)
+                            <br>
+                            arrRegLines(intArrayKey) = objExport.StdOut.ReadLine()
+                            <br>
+                            intArrayKey = intArrayKey + 1
+                            <br>
+                            Loop
+                            <br>
+                            Next
+                            <br>
+                            intArrayKey = 0
+                            <br>
+                            For Each lpRegLine in arrRegLines
+                            <br>
+                            if inStr(1, lpRegLine, strSearchString, 1) > 0 Then
+                            <br>
+                            WScript.Echo “Key: ” & arrRegLines(intArrayKey-2)
+                            <br>
+                            WScript.Echo “Value: ” & lpRegLine
+                            <br>
+                            End If
+                            <br>
+                            intArrayKey = intArrayKey + 1
+                            <br>
+                            Next
+                        </i>
+                        <br><br>
+                    </li>
+                    <li>
+                        Please not the second line <b>strSearchString = "ryg.exe"</b> This is where you would enter the string that you want to search for. In this case it is <b>ryg.exe</b> Also this VBS was designed for Windows XP, if you want this to work on Windows 7 you need to change the <b>-2</b> to <b>-3</b> on the <b>WScript.Echo “Key: ” & arrRegLines(intArrayKey-2)</b> line, else it will not give you the correct key. You may have to play with that negative number to find all of the Keys in Windows XP also, as I found some that did not work, so I had to run the VBS twice to get them all. I also removed all of my comments and variable clean-up from this so it would be easier to type. If you would like me to add those back in let me know. Yes I know this could be optimized more, but I was in a hurry and it took me like 15 mins to code. If requested, I can optimize this too.
+                        <br><br>
+                        <a target="_blank" href="pictures/edit.jpg">
+                            <img src="pictures/edit.jpg" class="css_thumbnail_400" title="A screenshot of a CLI window that contains all of the code lsited above" alt="A screenshot of a CLI window that contains all of the code lsited above">
+                        </a>
+                        <br><br>
+                    </li>
+                    <li>
+                        To save this newly typed out VBS you will want to press <b>ALT F S</b> Then to exit you will press <b>ALT F X</b>
+                    </li>
+                    <li>
+                        Now to run the VBS to search the registry, you will type in <b>cscript c:\RegSearch.vbs</b> This will then run the VBS and search the registry for all occurrences of <b>ryg.exe</b> and output the registry key and values to the CLI. I chose to use <b>CScript</b> rather than <b>WScript</b> so that the output would go to the CLI rather than a popup windows.
+                    </li>
+                    <li>
+                        If you notice, it does find ryg.exe in other places in the registry, which means that we will need to run reg add again to fix those values as well. Please note the values as these tell you where the files are located at. In my case they are all located in <b>C:\Documents and Settings\Administrator\Desktop</b> They will most likely not be located there on your computer, or at least I hope not.
+                        <br><br>
+                        <a target="_blank" href="pictures/regsearch.jpg">
+                            <img src="pictures/regsearch.jpg" class="css_thumbnail_400" title="A screenshot of a CLI window which contains the output of the script that was ran: Processing HKCC now. Key: HKEY_CLASSES_ROOT\.exe\shell\open Value: <NO NAME> REG_SZ 'C:\Documents and Settings\Administrator\Desktop\RYG.EXE' -a '%1' %* Key: HKEY_CURRENT_USER\Software\Classes\.exe\shell\open Value: <NO NAME> REG_SZ 'C:\Documents and Settings\Administrator\Desktop\RYG.EXE' -a '%1' %* Key: HKEY_LOCAL_MACHINE\SOFTWARE\Clients\StartMenuInternet\IEXPLORE.EXE\shell\open Value: <NO NAME> REG_SZ 'C:\Documents and Settings\Administrator\Desktop\RYG.EXE' -a 'C:\Program Files\Internet Explorer\iexplore.exe' Key: HKEY_USERS\S-1-5-21-1757981266-789336058-1060284298-500\Software\Classes\.exe\shell\open Value: <NO NAME> REG_SZ 'C:\Documents and Settings\Administrator\Desktop\RYG.EXE' -a '%1' %* Key: HKEY_USERS\S-1-5-21-1757981266-789336058-1060284298-500_Classes\.exe\shell\open Value: <NO NAME> REG_SZ 'C:\Documents and Settings\Administrator\Desktop\RYG.EXE' -a '%1' %* C:\DOCUME~1\ADMINI~1>reg add HKCR\.exe\shell\open /ve /d '\'%1\' %*\' This operation completed successfully" alt="A screenshot of a CLI window which contains the output of the script that was ran: Processing HKCC now. Key: HKEY_CLASSES_ROOT\.exe\shell\open Value: <NO NAME> REG_SZ 'C:\Documents and Settings\Administrator\Desktop\RYG.EXE' -a '%1' %* Key: HKEY_CURRENT_USER\Software\Classes\.exe\shell\open Value: <NO NAME> REG_SZ 'C:\Documents and Settings\Administrator\Desktop\RYG.EXE' -a '%1' %* Key: HKEY_LOCAL_MACHINE\SOFTWARE\Clients\StartMenuInternet\IEXPLORE.EXE\shell\open Value: <NO NAME> REG_SZ 'C:\Documents and Settings\Administrator\Desktop\RYG.EXE' -a 'C:\Program Files\Internet Explorer\iexplore.exe' Key: HKEY_USERS\S-1-5-21-1757981266-789336058-1060284298-500\Software\Classes\.exe\shell\open Value: <NO NAME> REG_SZ 'C:\Documents and Settings\Administrator\Desktop\RYG.EXE' -a '%1' %* Key: HKEY_USERS\S-1-5-21-1757981266-789336058-1060284298-500_Classes\.exe\shell\open Value: <NO NAME> REG_SZ 'C:\Documents and Settings\Administrator\Desktop\RYG.EXE' -a '%1' %* C:\DOCUME~1\ADMINI~1>reg add HKCR\.exe\shell\open /ve /d '\'%1\' %*\' This operation completed successfully">
+                        </a>
+                        <br><br>
+                    </li>
+                    <li>
+                        Now that we have cleaned up the registry, we just need to remove the virus itself. To do this just run <b>del “C:\Documents and Settings\Administrator\Desktop\ryg.exe”</b>
+                    </li>
+                    <li>
+                        Final step is to reboot the computer and in theory you should be virus free. You can reboot the computer but running <b>shutdown -r</b>
+                    </li>
+                </ol>
+                I had spent 2 days trying to figure out the batch file for this, but I failed. But I think it is because Microsoft removed some of the functionality from Windows XP. For example, you used to be able to run <b>reg query HKCR /s /F “ryg.exe”</b> and it would find everything for you. A simple one liner, but that does not appear to work in Windows XP, as Windows XP only has 3 options <b>/s, /v,</b> or <b>/ve</b>. Anywyas, I apologize for the delay in this post, I also apologize for the complication that the VBS has added. I tried to keep it simple, but it just didn't work out that way. I will probably revisit this later on and find a better method to handle it.
+                <br><br>
+                I do realize that steps 5 and 6 could be omitted as the registry search would detect these. But since step 1 already identified that the EXE registry keys were compromized, I figured I would fix the EXE's first. That way if you did not want to deal with the VBS you could just use the GUI (Graphical User Interface) for the rest.
+                <br><br>
+                Once again, let me know if you have any questions, or would like to see something else.
+                <br><br>
+            </div>
+        </hgroup>
+    </body>
+</html>

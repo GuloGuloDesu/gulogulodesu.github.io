@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lange="en">
+    <head>
+        <title>Fake Antivirus Removal</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../../site.css">
+    </head>
+    <body class="css_center">
+        <hgroup>
+            <div class="css_center_text">
+                <h1>
+                    Fake Antivirus Removal
+                </h1>
+                <small>
+                    Posted on May 25, 2011
+                </small>
+                <br><br>
+            </div>
+            <div>
+                In this post I will walk through the way that I have been removing the fake AV scanner from Windows XP Pc's for the past couple of years. So far I have only cleaned up one Windows 7 PC using this technique, so this may or may not work for you on Windows 7. I will try to post instructions for Windows 7 at a later date.
+                <br>
+                Now I know that there are a lot of techs out there that will run scan after scan until they find a program with the correct dat files to remove these viruses. But running those scans can take hours, and most of the versions of this virus are only a couple of files, which are fairly simple to remove and just takes a few minutes.
+                <br><br>
+                If you would, I would like for you to comment on this post where you find the viruses. I have been trying to notify web masters that their website is infected with a virus so that they can patch their hole and clean off the virus. Most web masters are unaware that they are propagating these viruses. According to Websense 79% of viruses come from legitimate web sites. With that being said let us being.
+                <br><br>
+                <ol type="A">
+                    <li>
+                        This first step is the most difficult and may take you a couple of tries. The goal of this step is to log onto the computer, and press <b>Ctrl Shift ESC</b> (at the same time) before the virus loads. This will load the task manager, which will give you the ability to kill the virus as soon as it loads. You have to be quick about this. This step isn't always required but it makes your life easier.
+                    </li>
+                    <li>
+                        When the task manager is open you need to go to the <b>Processes</b> tab and locate the virus EXE that is running. Normally the virus EXE is a random set of letters and numbers that doesn't make much sense. But in this case, the virus was called <b>Ryg.exe</b>. So you will want to highlight this process and press the <b>end process</b> button and select <b>Yes</b> as many times as it takes to kill the virus.
+                        <br><br>
+                        <a target="_blank" href="pictures/taskmanager.jpg">
+                            <img src="pictures/taskmanager.jpg" class="css_thumbnail_400" title="A screenshot of Windows Task Manager Processes tab with ryg.exe highlighted" alt="A screenshot of Windows Task Manager Processes tab with ryg.exe highlighted">
+                        </a>
+                        <br><br>
+                    </li>
+                    <li>
+                        Now the easy parts start. First we need to open the registry, but you have to open the registry in a special way. Since the virus normally changes how EXE's open on your computer, basically it changes it so no matter what EXE you click on it opens the virus instead.
+                    </li>
+                    <li>
+                        To bypass the opening of the virus when you open the registry we need to open up a CMD (DOS prompt). Press the <b>Windows Key R</b> this will open a run prompt. In the run prompt type in <b>CMD</b> and press <b>OK</b>
+                        <br><br>
+                        <a target="_blank" href="pictures/run.jpg">
+                            <img src="pictures/run.jpg" class="css_thumbnail_400" title="A screenshot of the Windows Run window with cmd typed in the open box" alt="A screenshot of the Windows Run window with cmd typed in the open box">
+                        </a>
+                        <br><br>
+                    </li>
+                    <li>
+                        Next we will need to change the directory from the default to <b>C:\Windows</b> by typing in <b>cd c:\windows</b>
+                    </li>
+                    <li>
+                        Next we will need to rename regedit.exe to regedit.com by typing in <b>rename regedit.exe regedit.com</b>
+                    </li>
+                    <li>
+                        Now we will open the registry by typing in <b>regedit.com</b>
+                        <br><br>
+                        <a target="_blank" href="pictures/regedit.jpg">
+                            <img src="pictures/regedit.jpg" class="css_thumbnail_400" title="A screenshot of the Windows CMD window tih the commands: cd C:\windows rename regedit.exe regedit.com regedit.com" alt="A screenshot of the Windows CMD window tih the commands: cd C:\windows rename regedit.exe regedit.com regedit.com">
+                        </a>
+                        <br><br>
+                    </li>
+                    <li>
+                        Now that we are inside the registry, we need to navigate to:
+                        <br>
+                        <b>HKEY_CLASSES_ROOT\exefile\shell\open\command</b>
+                    </li>
+                    <li>
+                        Notice how the <b>Default</b> has a path to <b>C:\Documents and Settings\NetworkService\Local Settings\Application Data\ryg.exe</b>, that string is what runs the virus before any EXE is executed. Please note down the location of the virus so that in a later step it can be located and removed.
+                        <br><br>
+                        <a target="_blank" href="pictures/regexe.jpg">
+                            <img src="pictures/regexe.jpg" class="css_thumbnail_400" title="A screenshot of the Windows Registry Editor as described above" alt="A screenshot of the Windows Registry Editor as described above">
+                        </a>
+                        <br><br>
+                    </li>
+                    <li>
+                        The <b>Default</b> should just be <b>“%1” %*</b> This is the default string to open EXE's. Basically you can just match it to the <b>IsolatedCommand</b> string in the same Key. So change the <b>Default</b> to <b>“%1” %*</b>
+                        <br><br>
+                        <a target="_blank" href="pictures/regfixed.jpg">
+                            <img src="pictures/regfixed.jpg" class="css_thumbnail_400" title="A screenshot of the Windows Registry Editor as described above" alt="A screenshot of the Windows Registry Editor as described above">
+                        </a>
+                        <br><br>
+                    </li>
+                    <li>
+                        Now that the <b>Command Default</b> has been fixed you can now open EXE's without fear of opening the virus again. Although, I recommend doing a search of the registry for any other entries of the virus. In this case do a search for <b>ryg.exe</b> and determine if you need to delete the string or change them back to their default. I would say just delete all of the strings, but when you do the search you will run into other sections that may have the <b>Command Default</b> that you would need to edit rather than delete. If you would like for me to expound upon this step, please let me know and I will.
+                    </li>
+                    <li>
+                        The next step is to find the original virus or rather the installation file of the virus. Normally the original virus adds itself to the startup of Windows so it is fairly simple to locate in <b>msconfig</b>
+                    </li>
+                    <li>
+                        To open <b>msconfig</b> press the <b>Windows Key R</b> and type in <b>msconfig</b> and select <b>OK</b>
+                    </li>
+                    <li>
+                        Go to the <b>Startup</b> tab and locate EXE's that look to be different. They are normally located in temp folders in the user directories, and they have long names of just random characters. In this case, the original virus name is <b>mifbbmrxsik.exe</b>
+                        <br><br>
+                        <a target="_blank" href="pictures/msconfig.jpg">
+                            <img src="pictures/msconfig.jpg" class="css_thumbnail_400" title="A screenshot of the Windows System Configuration Utility on the Startup tab with mifbbmrxsik.exe highlighted in the list" alt="A screenshot of the Windows System Configuration Utility on the Startup tab with mifbbmrxsik.exe highlighted in the list">
+                        </a>
+                        <br><br>
+                    </li>
+                    <li>
+                        Please note where the file is located at, and then uncheck the box and press <b>OK</b> (Please note when you reboot the computer later it will come up with a message about msconfig, just check the box and press OK)
+                    </li>
+                    <li>
+                        Now it's time to go remove the virus files, or if you are weird like me you can save the files to decompile later (which I will do and post how to do it).
+                    </li>
+                    <li>
+                        The first one we will remove is <b>mifbbmrxsik.exe</b> as this is the installation piece of the virus, and also the easiest one to delete. You can open up <b>My Computer</b> and navigate to the location of the virus <b>C:\Documents and Settings\Administrator\Local Settings\Temp\ackqvmsjg\</b> Now you can either just delete the virus, or my recommendation is to delete everything in <b>C:\Documents and Settings\Administrator\Local Settings\Temp\</b> As the name suggests this is just a temp directory, and it really shouldn't contain anything important, so just delete all of the files and folders in there.
+                    </li>
+                    <li>
+                        The second one we will remove is <b>ryg.exe</b> and this one is a bit trickier to remove. If you remember this virus is stored in <b>C:\Documents and Settings\NetworkServer\Application Data</b> but if you were to navigate to this folder you would not see <b>ryg.exe</b> even if you had enabled the view of <b>protected operating system files</b> and <b>hidden files</b>
+                        <br><br>
+                        <a target="_blank" href="pictures/emptyfolder.jpg">
+                            <img src="pictures/emptyfolder.jpg" class="css_thumbnail_400" title="A screenshot of the Windows Explorer opened to the folder containing ryg.exe, but ryg.exe is not being displayed. There is a separate Window open showing that Show Hidden Files is checked and Hide Protected Operating System Files is unchecked" alt="A screenshot of the Windows Explorer opened to the folder containing ryg.exe, but ryg.exe is not being displayed. There is a separate Window open showing that Show Hidden Files is checked and Hide Protected Operating System Files is unchecked">
+                        </a>
+                        <br><br>
+                    </li>
+                    <li>
+                        This is caused by the <b>System</b> and <b>Hidden</b> attributes being set on <b>ryg.exe</b>. To fix this open up another command prompt and navigate to <b>C:\Documents and Settings\NetworkServer\Application Data</b>
+                    </li>
+                    <li>
+                        Now type in <b> dir /a</b> This will display all files in the <b>Application Data</b> direcotry which includes the virus.
+                        <br><br>
+                        <a target="_blank" href="pictures/dir.jpg">
+                            <img src="pictures/dir.jpg" class="css_thumbnail_400" title="A screenshot of a Windows CMD windo with the following commands and output: C:\Documents and Settings\NetworkService\Local Settings\Application Data>dir Adobe Apple Google Microsoft PCHealth C:\Documents and Settings\NetworkService\Local Settings\Application Data> dir /a 583ajdg3vs2074475r23v5 Adobe Apple Google Microsoft PCHealth" alt="A screenshot of a Windows CMD windo with the following commands and output: C:\Documents and Settings\NetworkService\Local Settings\Application Data>dir Adobe Apple Google Microsoft PCHealth C:\Documents and Settings\NetworkService\Local Settings\Application Data> dir /a 583ajdg3vs2074475r23v5 Adobe Apple Google Microsoft PCHealth">
+                        </a>
+                        <br><br>
+                    </li>
+                    <li>
+                        You can view the attributes of <b>ryg.exe</b> by typin in <b>attrib ryg.exe</b> This will display that <b>ryg.exe</b> has an <b>S</b> and <b>H</b> flag set, which hides it from view.
+                    </li>
+                    <li>
+                        To remove these flags, type in <b>attrib ryg.exe -S -H</b> Now the virus should be viewable by doing either a <b>dir</b> or looking in <b>My Computer</b>
+                    </li>
+                    <li>
+                        From there you can highlight <b>ryg.exe</b> and delete it (be sure to empty the <b>Recycle Bin</b> after deletion though)
+                    </li>
+                    <li>
+                        Now this is the step that I always forget to do. You need to make sure that <b>Internet Explorer</b> is not using any proxies to connect to the Internet. To do this, open <b>Internet Explorer</b> and go to <b>Tools, Internet Options</b>, select the <b>Connections</b> tab and then click on <b>LAN Settings</b>, and be sure to clear out any check boxes. Please note that some companies use a proxy, so this could be a bad thing on a company computer, but most home users don't use proxies.
+                        <br><br>
+                        <a target="_blank" href="pictures/ie.jpg">
+                            <img src="pictures/ie.jpg" class="css_thumbnail_400" title="A screenshot of Windows Ineternet Explorer Internet Options with the Connections Tab open and Local Area Network (LAN) Settings open with the following settings highlighted and unchecked Automatically detect settings Use automatic configuration script Use a proxy server for your LAN (These settings will not apply to dial-up or VPN connections)" alt="A screenshot of Windows Ineternet Explorer Internet Options with the Connections Tab open and Local Area Network (LAN) Settings open with the following settings highlighted and unchecked Automatically detect settings Use automatic configuration script Use a proxy server for your LAN (These settings will not apply to dial-up or VPN connections)">
+                        </a>
+                        <br><br>
+                    </li>
+                    <li>
+                        Final step is to reboot the computer. In theory when you log on you should be virus free.
+                    </li>
+                </ol>
+                This process normally takes me around 5 minutes to complete, and as long as I follow all the steps (I occasionally forget one) I have had a 100% success rate at remvoving the viruses.
+                <br><br>
+                Please feel free to ask any questions you may have, or if you want me to expound on any of the steps above. Also please comment about any websites that you find that have viruses on them. I will double check the website before notifying the web masters. I will also try to create a section that lists all of the websites that people have listed or that I have found, and in theory I will update the list with whether the web master has cleared the virus or not.
+                <br><br>
+            </div>
+        </hgroup>
+    </body>
+</html>

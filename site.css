@@ -1,0 +1,30 @@
+@media (prefers-color-scheme: dark) {
+    body {
+        color: #D4D4D4;
+        background: #333333
+    }
+    a:link {
+        color: #89C4F4;
+    }
+    a:visited {
+        color: #BE90D4;
+    }
+}
+
+.css_center {
+    max-width: 75%;
+    margin: auto;
+}
+
+.css_center_text {
+    text-align: center;
+}
+.css_thumbnail_400 {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 400px;
+}
+.css_thumbnail_400:hover {
+    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
