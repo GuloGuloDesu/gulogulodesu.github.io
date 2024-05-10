@@ -1,7 +1,7 @@
 @media (prefers-color-scheme: dark) {
     body {
         color: #D4D4D4;
-        background: #333333
+        background: #333333;
     }
     a:link {
         color: #89C4F4;
@@ -19,12 +19,60 @@
 .css_center_text {
     text-align: center;
 }
+
 .css_thumbnail_400 {
     border: 1px solid #ddd;
     border-radius: 4px;
     padding: 5px;
     width: 400px;
 }
+
 .css_thumbnail_400:hover {
     box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+
+.topButton {
+    position: fixed;
+    bottom: 10px;
+    float: right;
+    right: 18.5%;
+    left: 77.25%;
+    max-width: 30px;
+    width: 100%;
+    font-size: 12px;
+    font-weight: bold;
+    background-color: #D4D4D4;
+    border-color: rgba(85, 85, 85, 0.2);
+    padding: .5px;
+    border-radius: 4px;
+    a {
+        color: #000000;
+    }
+}
+
+.topButton:hover {
+    background-color: #89C4F4;
+}
+
+.homeButton {
+    position: fixed;
+    bottom: 10px;
+    float: right;
+    right: 21.5%;
+    left: 80.25%;
+    max-width: 41px;
+    width: 100%;
+    font-size: 12px;
+    font-weight: bold;
+    background-color: #D4D4D4;
+    border-color: rgba(85, 85, 85, 0.2);
+    padding: .5px;
+    border-radius: 4px;
+    a {
+        color: #000000;
+    }
+}
+
+.homeButton:hover {
+    background-color: #89C4F4;
 }
