@@ -31,6 +31,15 @@
     box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
 }
 
+.css_thumbnail_50 {
+    padding: 5px;
+    width: 50px;
+}
+
+.css_thumbnail_50:hover {
+    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+
 .topButton {
     position: fixed;
     bottom: 10px;
