@@ -661,13 +661,13 @@
                         <br>
                         f = 1 / (8521.96 * 0.00707)
                         <br>
-                        f = 1 / 6.02502572
+                        f = 1 / 60.2502572
                         <br>
-                        f = 0.16597439521 Hz
+                        f = 0.016597439521 Hz
                         <br>
                     </i>
                 </p>
-                So in this case, the LEDS (D1, D2) would blink at a rate of ~0.166 times per second, or once every 6 seconds.
+                So in this case, the LEDS (D1, D2) would blink at a rate of ~0.0166 times per second, or once every 6 seconds.
                 <br>
                 This means that we will be adding 2 resistors (R2, R3) to protect each of the LEDs that are wired in parallel, and adding 2 resistors (R1, R4) for the capacitors to determine the blinking frequency.
                 <br>
@@ -703,13 +703,13 @@
                 <i>
                     Thigh = 0.7 * (R1 + R2) * C1
                     <br>
-                    Thigh = 0.7 * (8412 + 369) * 0.000707
+                    Thigh = 0.7 * (8412 + 369) * 0.00707
                     <br>
-                    Thigh = 0.7 * 8781 * 0.000707
+                    Thigh = 0.7 * 8781 * 0.00707
                     <br>
-                    Thigh = 6146.7 * 0.000707
+                    Thigh = 6146.7 * 0.00707
                     <br>
-                    Thigh = 4.3457169
+                    Thigh = 43.457169
                     <br><br>
                 </i>
                 Then to calculate the square wave Time Low we would:
@@ -717,14 +717,14 @@
                 <i>
                     Tlow = 0.7 * R2 * C1
                     <br>
-                    Tlow = 0.7 * 369 * 0.000707
+                    Tlow = 0.7 * 369 * 0.00707
                     <br>
-                    Tlow = 258.3 * 0.000707
+                    Tlow = 258.3 * 0.00707
                     <br>
-                    Tlow = 0.1826181
+                    Tlow = 1.826181
                     <br><br>
                 </i>
-                So in this example the LED (D1) will turn on for ~ 4 seconds, and then it will turn off for ~0.2 seconds. Basically the LED (D1) will stay on for a long time and then it will blink off quickly and turn back on.
+                So in this example the LED (D1) will turn on for ~ 43 seconds, and then it will turn off for ~2 seconds. Basically the LED (D1) will stay on for a long time and then it will blink off quickly and turn back on.
                 <br><br>
                 Now that we know how to calculate what the blink rate is using a square wave, we can start to design our circuit using the 555 Timer IC (U1). But first we need to learn a little about the 555 Timer IC (U1).
                 <br>
