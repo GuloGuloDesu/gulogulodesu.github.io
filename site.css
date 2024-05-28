@@ -1,3 +1,27 @@
+@font-face {
+    font-family: lotion;
+    src: url(fonts/Lotion-Regular.woff2)
+}
+
+@font-face {
+    font-family: lotion;
+    src: url(fonts/Lotion-RegularItalic.woff2);
+    font-style: italic;
+}
+
+@font-face {
+    font-family: lotion;
+    src: url(fonts/Lotion-Black.woff2);
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: lotion;
+    src: url(fonts/Lotion-BlackItalic.woff2);
+    font-style: italic;
+    font-weight: bold;
+}
+
 @media (prefers-color-scheme: dark) {
     body {
         color: #D4D4D4;
@@ -9,6 +33,10 @@
     a:visited {
         color: #BE90D4;
     }
+}
+
+body {
+    font-family: lotion;
 }
 
 .css_center {
